@@ -3,13 +3,12 @@
 
 <template>
   <UApp>
-    <!-- <header>
-    </header> -->
+    <header>
+      HEADER
+    </header>
 
     <main>
-      <div>
-        main
-      </div>
+      <router-view />
     </main>
   </UApp>
 </template>
