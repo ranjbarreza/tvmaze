@@ -29,6 +29,9 @@ export interface ShowDetails {
     original: string
   } | null
   summary: string
+}
+
+export interface ShowDetailsWithCast extends ShowDetails {
   _embedded: {
     cast: Cast[]
   }

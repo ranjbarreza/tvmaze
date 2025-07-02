@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { ShowDetails } from '@/types/ShowDetails'
+import type { ShowDetailsWithCast } from '@/types/ShowDetails'
 import { useDateFormat } from '@vueuse/core'
 
-defineProps<{ show: ShowDetails }>()
+defineProps<{ show: ShowDetailsWithCast }>()
 </script>
 
 <template>
@@ -11,7 +11,7 @@ defineProps<{ show: ShowDetails }>()
       v-if="show.image"
       :src="show.image.original"
       :alt="show.name"
-      class="w-full sm:w-82 object-cover block"
+      class="w-full sm:w-82 object-cover block rounded-xl border border-neutral-700"
     >
     <div>
       <h1 class="font-semibold text-2xl sm:text-4xl mb-1">
@@ -64,7 +64,7 @@ defineProps<{ show: ShowDetails }>()
         :key="cast.person.id"
         :href="cast.person.url"
         target="_blank"
-        class="relative block hover:[&>label]:underline"
+        class="relative block hover:[&>label]:underline rounded-xl overflow-hidden"
       >
         <img
           v-if="cast.person.image"

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { ShowDetails } from '@/types/ShowDetails'
+import type { ShowDetailsWithCast } from '@/types/ShowDetails'
 import { onMounted, ref } from 'vue'
 import ShowDetailsLoading from '@/components/ShowDetailsLoading.vue'
 import ShowDetailsPresentation from '@/components/ShowDetailsPresentation.vue'
 
 const props = defineProps<{ id: string }>()
 
-const show = ref<ShowDetails>()
+const show = ref<ShowDetailsWithCast>()
 const loading = ref(true)
 const error = ref<string>()
 
