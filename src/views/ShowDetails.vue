@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ShowDetailsWithCast } from '@/types/ShowDetails'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import ShowDetailsLoading from '@/components/ShowDetailsLoading.vue'
 import ShowDetailsPresentation from '@/components/ShowDetailsPresentation.vue'
 
@@ -12,9 +12,11 @@ const error = ref<string>()
 
 const toast = useToast()
 
-onMounted(async () => {
+async function fetchShow(id: string) {
+  loading.value = true
+  error.value = undefined
   try {
-    const response = await fetch(`https://api.tvmaze.com/shows/${props.id}?embed=cast`)
+    const response = await fetch(`https://api.tvmaze.com/shows/${id}?embed=cast`)
 
     if (!response.ok) {
       toast.add({
@@ -22,7 +24,6 @@ onMounted(async () => {
         description: 'Please try again',
         color: 'error',
       })
-
       throw new Error('Could not fetch show')
     }
 
@@ -30,10 +31,19 @@ onMounted(async () => {
   }
   catch (err: any) {
     error.value = err.message
+    show.value = undefined
   }
   finally {
     loading.value = false
   }
+}
+
+onMounted(() => {
+  fetchShow(props.id)
+})
+
+watch(() => props.id, (newId) => {
+  fetchShow(newId)
 })
 </script>
 

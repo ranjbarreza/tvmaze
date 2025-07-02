@@ -53,7 +53,10 @@ defineProps<{ show: ShowDetailsWithCast }>()
     </div>
   </div>
 
-  <div class="mt-8">
+  <div
+    class="mt-8"
+    v-if="show._embedded.cast.length"
+  >
     <h2 class="font-semibold text-xl sm:text-2xl">
       Cast
     </h2>
