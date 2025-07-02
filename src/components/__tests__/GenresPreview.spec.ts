@@ -1,6 +1,6 @@
 import { cleanup, render } from '@testing-library/vue'
 import { RouterLinkStub } from '@vue/test-utils'
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, describe, expect, it } from 'vitest'
 import GenresPreview from '@/components/GenresPreview.vue'
 
 const props = {

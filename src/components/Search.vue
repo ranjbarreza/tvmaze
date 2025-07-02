@@ -42,16 +42,16 @@ async function performSearch() {
 <template>
   <UButtonGroup size="xl">
     <UInput
+      v-model="inputValue"
       :loading
       icon="i-lucide-search"
       placeholder="Search..."
-      v-model="inputValue"
       color="neutral"
       variant="subtle"
-      @keyup.enter="performSearch"
       :ui="{
         base: 'sm:w-98 rounded-full',
       }"
+      @keyup.enter="performSearch"
     />
 
     <UButton
@@ -60,23 +60,23 @@ async function performSearch() {
       icon="i-lucide-move-right"
       aria-label="Search"
       :disabled="!inputValue"
-      @click="performSearch"
       :ui="{ base: 'rounded-full pr-4' }"
+      @click="performSearch"
     />
   </UButtonGroup>
 
   <div
-    class="bg-neutral-800 p-2 mt-1 rounded-md border border-neutral-700 absolute sm:w-98"
     v-if="showResults"
     ref="target"
+    class="bg-neutral-800 p-2 mt-1 rounded-md border border-neutral-700 absolute sm:w-98"
   >
     <template v-if="results?.length">
       <RouterLink
         v-for="result in results"
-        class="block p-2 hover:bg-neutral-700 rounded-sm"
         :key="result.show.id"
-        @click="showResults = false"
+        class="block p-2 hover:bg-neutral-700 rounded-sm"
         :to="`/shows/${result.show.id}`"
+        @click="showResults = false"
       >
         {{ result.show.name }}
       </RouterLink>
